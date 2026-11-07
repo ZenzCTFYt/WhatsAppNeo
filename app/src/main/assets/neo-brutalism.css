@@ -1,0 +1,109 @@
+/* WhatsApp Neo - Classic Neo Brutalism theme (visual only) */
+:root {
+  --nb-bg: #F5F0E6;
+  --nb-ink: #000000;
+  --nb-red: #FF5C5C;
+  --nb-yellow: #FFD93D;
+  --nb-blue: #4D96FF;
+  --nb-green: #6BFF6B;
+  --nb-border: 3px solid #000000;
+  --nb-shadow: 6px 6px 0 #000000;
+}
+
+html, body, #app {
+  background: var(--nb-bg) !important;
+  font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif !important;
+  color: var(--nb-ink) !important;
+}
+
+/* Panels */
+#side, [data-testid="chat-list"], .two, ._3B19s {
+  background: var(--nb-bg) !important;
+  border-right: var(--nb-border) !important;
+}
+
+#main, [data-testid="conversation-panel-wrapper"] {
+  background: var(--nb-bg) !important;
+}
+
+/* Headers / top bars */
+header, [role="banner"], ._1iCR9 {
+  background: var(--nb-yellow) !important;
+  border-bottom: var(--nb-border) !important;
+  box-shadow: 0 4px 0 #000 !important;
+}
+
+/* Chat list items */
+[role="row"], [data-testid="cell-frame-container"], ._2nY6U {
+  border-bottom: 2px solid #000 !important;
+  background: var(--nb-bg) !important;
+}
+[role="row"]:hover, [data-testid="cell-frame-container"]:hover {
+  background: var(--nb-blue) !important;
+}
+
+/* Message bubbles */
+.message-in, .message-out,
+[data-testid="msg-container"] {
+  border: var(--nb-border) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--nb-shadow) !important;
+  margin: 6px !important;
+}
+.message-in { background: #FFFFFF !important; }
+.message-out { background: var(--nb-green) !important; }
+
+/* Compose box */
+footer, [data-testid="conversation-compose-box"] {
+  background: var(--nb-bg) !important;
+  border-top: var(--nb-border) !important;
+}
+div[contenteditable="true"], [data-testid="conversation-compose-box-input"] {
+  background: #FFFFFF !important;
+  border: var(--nb-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0 #000 !important;
+  padding: 8px !important;
+}
+
+/* Buttons */
+button, [role="button"] {
+  border: var(--nb-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0 #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+button:active, [role="button"]:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0 0 0 #000 !important;
+}
+
+/* Inputs / search */
+input, textarea, [contenteditable] {
+  border: var(--nb-border) !important;
+  border-radius: 0 !important;
+  background: #FFFFFF !important;
+}
+
+/* Modals / popups */
+[role="dialog"], ._2dA4H, ._3BqNZ {
+  border: var(--nb-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #000 !important;
+  background: var(--nb-bg) !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--nb-bg); border-left: var(--nb-border); }
+::-webkit-scrollbar-thumb { background: var(--nb-ink); border: 2px solid var(--nb-bg); }
+
+/* Remove rounded corners globally-ish */
+* { border-radius: 0 !important; }
+
+/* Links */
+a { color: var(--nb-blue) !important; text-decoration: underline !important; font-weight: 700 !important; }
+
+/* Icons keep color */
+svg { fill: currentColor !important; }

@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.WhatsAppNeo" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/nb_blue</item>
+        <item name="colorOnPrimary">@color/nb_black</item>
+        <item name="android:statusBarColor">@color/nb_bg</item>
+        <item name="android:navigationBarColor">@color/nb_bg</item>
+        <item name="android:windowBackground">@color/nb_bg</item>
+    </style>
+</resources>
