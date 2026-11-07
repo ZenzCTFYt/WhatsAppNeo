@@ -64,8 +64,6 @@ class MainActivity : AppCompatActivity() {
         s.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
         s.userAgentString = s.userAgentString + " WhatsAppNeo/1.0"
 
-        webView.isHardwareAccelerated = true
-
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
