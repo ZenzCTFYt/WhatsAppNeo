@@ -62,13 +62,10 @@ header, [role="banner"] {
   border-bottom: 1.5px solid #000 !important;
   background: rgba(255,255,255,0.25) !important;
   border-radius: 10px !important;
-  margin: 4px 6px !important;
-  transition: transform .25s var(--nb-spring), background .2s ease !important;
-  animation: nb-bounce-in .4s var(--nb-spring) both !important;
+  transition: background .2s ease !important;
 }
 [role="row"]:hover, [data-testid="cell-frame-container"]:hover {
   background: var(--nb-blue) !important;
-  transform: translateX(4px) scale(1.02) !important;
 }
 
 /* Message bubbles - liquid glass */
