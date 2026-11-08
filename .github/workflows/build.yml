@@ -18,12 +18,23 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Accept Android SDK licenses
+      - name: Set up Android SDK
         run: |
           export ANDROID_HOME=/usr/local/lib/android/sdk
           echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0" || true
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.gradle*', '**/*.gradle.kts') }}
+          restore-keys: |
+            gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}-
+            gradle-
 
       - name: Cache debug keystore (stable signing)
         uses: actions/cache@v4
@@ -31,13 +42,8 @@ jobs:
           path: ~/.android/debug.keystore
           key: whatsapp-neo-debug-keystore-v1
 
-      - name: Check Gradle
-        run: |
-          which gradle || ls /usr/bin/gradle /usr/share/gradle/bin/gradle 2>/dev/null
-          gradle --version || true
-
       - name: Build debug APK
-        run: gradle :app:assembleDebug --no-daemon
+        run: ./gradlew :app:assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
