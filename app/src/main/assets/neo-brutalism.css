@@ -103,3 +103,8 @@ svg { fill: currentColor !important; }
 
 /* keep edges sharp but soften overall density */
 * { border-radius: 0 !important; }
+
+/* Responsive: adapt to narrow phones & wide tablets */
+html, body { min-width: 0 !important; max-width: 100% !important; overflow-x: auto !important; }
+#app, #side, #main { min-width: 0 !important; max-width: 100% !important; }
+img, video { max-width: 100% !important; height: auto !important; }

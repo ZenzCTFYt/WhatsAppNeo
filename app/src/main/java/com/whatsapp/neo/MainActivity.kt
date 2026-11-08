@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         s.setSupportZoom(true)
         s.builtInZoomControls = true
         s.displayZoomControls = false
+        s.setInitialScale(0)
 
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
@@ -132,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             .replace("\\", "\\\\")
             .replace("'", "\\'")
             .replace("\n", "\\n")
-        val js = """
+        val js = \"\"\"
             (function() {
               var id = 'neo-brutalism-theme';
               var old = document.getElementById(id);
@@ -141,6 +142,10 @@ class MainActivity : AppCompatActivity() {
               st.id = id;
               st.textContent = '$escaped';
               (document.head || document.documentElement).appendChild(st);
+              // Responsive viewport
+              var meta = document.querySelector('meta[name="viewport"]');
+              if (!meta) { meta = document.createElement('meta'); meta.name = 'viewport'; (document.head || document.documentElement).appendChild(meta); }
+              meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
               if (!window.__nbObs) {
                 window.__nbObs = new MutationObserver(function() {
                   if (!document.getElementById(id)) {
@@ -153,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                 window.__nbObs.observe(document.documentElement, { childList: true, subtree: true });
               }
             })();
-        """.trimIndent()
+        \"\"\".trimIndent()
         view?.evaluateJavascript(js, null)
     }
 
