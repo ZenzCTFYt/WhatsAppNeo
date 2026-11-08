@@ -20,7 +20,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
-    private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var splash: android.view.View
 
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
@@ -41,12 +40,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         webView = findViewById(R.id.webView)
-        swipeRefresh = findViewById(R.id.swipeRefresh)
         splash = findViewById(R.id.splash)
         webView.setBackgroundColor(android.graphics.Color.parseColor("#F5F0E6"))
 
         setupWebView()
-        swipeRefresh.setOnRefreshListener { webView.reload() }
 
         findViewById<android.widget.Button>(R.id.btnZoomIn).setOnClickListener { webView.zoomBy(1.25f) }
         findViewById<android.widget.Button>(R.id.btnZoomOut).setOnClickListener { webView.zoomBy(0.8f) }
@@ -83,15 +80,10 @@ class MainActivity : AppCompatActivity() {
         s.builtInZoomControls = true
         s.displayZoomControls = false
 
-        webView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
-            swipeRefresh.isEnabled = scrollY == 0
-        }
-
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 injectTheme(view)
-                swipeRefresh.isRefreshing = false
                 splash.visibility = android.view.View.GONE
             }
 

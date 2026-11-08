@@ -49,8 +49,9 @@ header, [role="banner"] {
   margin: 6px 4px !important;
   padding: 8px 10px !important;
 }
-.message-in { background: #FFFFFF !important; }
-.message-out { background: var(--nb-yellow) !important; }
+.message-in { background: #FFFFFF !important; color: #000000 !important; }
+.message-out { background: var(--nb-blue) !important; color: #FFFFFF !important; }
+.message-out * { color: #FFFFFF !important; }
 
 footer, [data-testid="conversation-compose-box"] {
   background: var(--nb-bg) !important;

@@ -4,16 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/nb_bg">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <WebView
-            android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:id="@+id/splash"
@@ -32,7 +26,7 @@
             android:textStyle="bold"
             android:fontFamily="monospace"
             android:padding="12dp"
-            android:background="@color/nb_yellow" />
+            android:background="@drawable/nb_btn" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,7 +45,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
-        android:background="@color/nb_yellow"
+        android:background="@drawable/nb_btn"
         android:padding="4dp">
 
         <Button
@@ -62,7 +56,9 @@
             android:textColor="@color/nb_black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:background="@color/nb_yellow"
+            android:background="@drawable/nb_btn"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:padding="0dp" />
 
         <Button
@@ -74,7 +70,9 @@
             android:textColor="@color/nb_black"
             android:textSize="10sp"
             android:textStyle="bold"
-            android:background="@color/nb_yellow"
+            android:background="@drawable/nb_btn"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:padding="0dp" />
 
         <Button
@@ -86,7 +84,9 @@
             android:textColor="@color/nb_black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:background="@color/nb_yellow"
+            android:background="@drawable/nb_btn"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:padding="0dp" />
     </LinearLayout>
 </FrameLayout>
