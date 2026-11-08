@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         s.javaScriptEnabled = true
         s.domStorageEnabled = true
         s.databaseEnabled = true
-        s.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+        s.cacheMode = WebSettings.LOAD_DEFAULT
         s.allowFileAccess = false
         s.allowContentAccess = true
         s.mediaPlaybackRequiresUserGesture = false
@@ -86,10 +86,20 @@ class MainActivity : AppCompatActivity() {
                 splash.visibility = android.view.View.GONE
             }
 
+            override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: android.webkit.WebResourceError?) {
+                super.onReceivedError(view, request, error)
+                splash.visibility = android.view.View.GONE
+            }
+
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return false
             }
         }
+
+        // Fallback: hide splash even if page never finishes
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            splash.visibility = android.view.View.GONE
+        }, 8000)
 
         webView.webChromeClient = object : WebChromeClient() {
             override fun onShowFileChooser(
