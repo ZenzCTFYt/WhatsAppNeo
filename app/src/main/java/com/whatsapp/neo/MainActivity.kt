@@ -143,17 +143,6 @@ class MainActivity : AppCompatActivity() {
               var meta = document.querySelector('meta[name="viewport"]');
               if (!meta) { meta = document.createElement('meta'); meta.name = 'viewport'; (document.head || document.documentElement).appendChild(meta); }
               meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
-              if (!window.__nbObs) {
-                window.__nbObs = new MutationObserver(function() {
-                  if (!document.getElementById(id)) {
-                    var s = document.createElement('style');
-                    s.id = id;
-                    s.textContent = '$escaped';
-                    (document.head || document.documentElement).appendChild(s);
-                  }
-                });
-                window.__nbObs.observe(document.documentElement, { childList: true, subtree: true });
-              }
             })();
         """.trimIndent()
         view?.evaluateJavascript(js, null)
