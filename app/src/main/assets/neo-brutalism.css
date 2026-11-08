@@ -1,4 +1,4 @@
-/* WhatsApp Neo - Classic Neo Brutalism theme (visual only) */
+/* WhatsApp Neo - Neo Brutalism (refined, visual only) */
 :root {
   --nb-bg: #F5F0E6;
   --nb-ink: #000000;
@@ -6,8 +6,10 @@
   --nb-yellow: #FFD93D;
   --nb-blue: #4D96FF;
   --nb-green: #6BFF6B;
-  --nb-border: 3px solid #000000;
-  --nb-shadow: 6px 6px 0 #000000;
+  --nb-pink: #FF90E8;
+  --nb-border: 2px solid #000000;
+  --nb-shadow: 4px 4px 0 #000000;
+  --nb-shadow-sm: 3px 3px 0 #000000;
 }
 
 html, body, #app {
@@ -16,8 +18,7 @@ html, body, #app {
   color: var(--nb-ink) !important;
 }
 
-/* Panels */
-#side, [data-testid="chat-list"], .two, ._3B19s {
+#side, [data-testid="chat-list"] {
   background: var(--nb-bg) !important;
   border-right: var(--nb-border) !important;
 }
@@ -26,34 +27,31 @@ html, body, #app {
   background: var(--nb-bg) !important;
 }
 
-/* Headers / top bars */
-header, [role="banner"], ._1iCR9 {
+header, [role="banner"] {
   background: var(--nb-yellow) !important;
   border-bottom: var(--nb-border) !important;
-  box-shadow: 0 4px 0 #000 !important;
+  box-shadow: 0 3px 0 #000 !important;
 }
 
-/* Chat list items */
-[role="row"], [data-testid="cell-frame-container"], ._2nY6U {
-  border-bottom: 2px solid #000 !important;
+[role="row"], [data-testid="cell-frame-container"] {
+  border-bottom: 1.5px solid #000 !important;
   background: var(--nb-bg) !important;
+  padding: 8px 10px !important;
 }
 [role="row"]:hover, [data-testid="cell-frame-container"]:hover {
   background: var(--nb-blue) !important;
 }
 
-/* Message bubbles */
-.message-in, .message-out,
-[data-testid="msg-container"] {
+.message-in, .message-out, [data-testid="msg-container"] {
   border: var(--nb-border) !important;
   border-radius: 0 !important;
-  box-shadow: var(--nb-shadow) !important;
-  margin: 6px !important;
+  box-shadow: var(--nb-shadow-sm) !important;
+  margin: 6px 4px !important;
+  padding: 8px 10px !important;
 }
 .message-in { background: #FFFFFF !important; }
-.message-out { background: var(--nb-green) !important; }
+.message-out { background: var(--nb-yellow) !important; }
 
-/* Compose box */
 footer, [data-testid="conversation-compose-box"] {
   background: var(--nb-bg) !important;
   border-top: var(--nb-border) !important;
@@ -62,48 +60,45 @@ div[contenteditable="true"], [data-testid="conversation-compose-box-input"] {
   background: #FFFFFF !important;
   border: var(--nb-border) !important;
   border-radius: 0 !important;
-  box-shadow: 4px 4px 0 #000 !important;
-  padding: 8px !important;
+  box-shadow: var(--nb-shadow-sm) !important;
+  padding: 8px 10px !important;
 }
 
-/* Buttons */
 button, [role="button"] {
   border: var(--nb-border) !important;
   border-radius: 0 !important;
-  box-shadow: 4px 4px 0 #000 !important;
+  box-shadow: var(--nb-shadow-sm) !important;
   font-weight: 700 !important;
-  text-transform: uppercase !important;
+  padding: 6px 10px !important;
+  transition: transform .08s ease, box-shadow .08s ease !important;
 }
 button:active, [role="button"]:active {
-  transform: translate(4px, 4px) !important;
+  transform: translate(3px, 3px) !important;
   box-shadow: 0 0 0 #000 !important;
 }
 
-/* Inputs / search */
-input, textarea, [contenteditable] {
+input, textarea {
   border: var(--nb-border) !important;
   border-radius: 0 !important;
   background: #FFFFFF !important;
+  padding: 6px 8px !important;
 }
 
-/* Modals / popups */
-[role="dialog"], ._2dA4H, ._3BqNZ {
+[role="dialog"] {
   border: var(--nb-border) !important;
   border-radius: 0 !important;
-  box-shadow: 8px 8px 0 #000 !important;
+  box-shadow: 6px 6px 0 #000 !important;
   background: var(--nb-bg) !important;
+  padding: 12px !important;
 }
 
-/* Scrollbars */
-::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--nb-bg); border-left: var(--nb-border); }
 ::-webkit-scrollbar-thumb { background: var(--nb-ink); border: 2px solid var(--nb-bg); }
 
-/* Remove rounded corners globally-ish */
-* { border-radius: 0 !important; }
-
-/* Links */
 a { color: var(--nb-blue) !important; text-decoration: underline !important; font-weight: 700 !important; }
 
-/* Icons keep color */
 svg { fill: currentColor !important; }
+
+/* keep edges sharp but soften overall density */
+* { border-radius: 0 !important; }

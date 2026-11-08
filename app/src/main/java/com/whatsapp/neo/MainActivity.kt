@@ -49,7 +49,16 @@ class MainActivity : AppCompatActivity() {
 
         requestRuntimePermissions()
 
-        webView.loadUrl("https://web.whatsapp.com")
+        if (savedInstanceState != null) {
+            webView.restoreState(savedInstanceState)
+        } else {
+            webView.loadUrl("https://web.whatsapp.com")
+        }
+    }
+
+    override fun onSaveInstanceState(outState: android.os.Bundle) {
+        super.onSaveInstanceState(outState)
+        webView.saveState(outState)
     }
 
     private fun setupWebView() {
@@ -57,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         s.javaScriptEnabled = true
         s.domStorageEnabled = true
         s.databaseEnabled = true
-        s.cacheMode = WebSettings.LOAD_DEFAULT
+        s.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         s.allowFileAccess = false
         s.allowContentAccess = true
         s.mediaPlaybackRequiresUserGesture = false
