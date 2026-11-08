@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
         swipeRefresh = findViewById(R.id.swipeRefresh)
         splash = findViewById(R.id.splash)
+        webView.setBackgroundColor(android.graphics.Color.parseColor("#F5F0E6"))
 
         setupWebView()
         swipeRefresh.setOnRefreshListener { webView.reload() }
@@ -89,6 +90,9 @@ class MainActivity : AppCompatActivity() {
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: android.webkit.WebResourceError?) {
                 super.onReceivedError(view, request, error)
                 splash.visibility = android.view.View.GONE
+                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    view?.reload()
+                }, 2000)
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
