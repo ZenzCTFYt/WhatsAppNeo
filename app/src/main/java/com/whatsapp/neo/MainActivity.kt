@@ -48,6 +48,10 @@ class MainActivity : AppCompatActivity() {
         setupWebView()
         swipeRefresh.setOnRefreshListener { webView.reload() }
 
+        findViewById<android.widget.Button>(R.id.btnZoomIn).setOnClickListener { webView.zoomBy(1.25f) }
+        findViewById<android.widget.Button>(R.id.btnZoomOut).setOnClickListener { webView.zoomBy(0.8f) }
+        findViewById<android.widget.Button>(R.id.btnZoomReset).setOnClickListener { webView.reload() }
+
         requestRuntimePermissions()
 
         if (savedInstanceState != null) {
@@ -78,6 +82,10 @@ class MainActivity : AppCompatActivity() {
         s.setSupportZoom(true)
         s.builtInZoomControls = true
         s.displayZoomControls = false
+
+        webView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            swipeRefresh.isEnabled = scrollY == 0
+        }
 
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
