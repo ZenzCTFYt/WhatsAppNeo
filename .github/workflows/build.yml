@@ -43,7 +43,12 @@ jobs:
           key: whatsapp-neo-debug-keystore-v1
 
       - name: Build debug APK
-        run: ./gradlew :app:assembleDebug --no-daemon
+        run: |
+          for i in 1 2 3; do
+            ./gradlew :app:assembleDebug --no-daemon && break
+            echo "Attempt $i failed, retrying in 15s..."
+            sleep 15
+          done
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
