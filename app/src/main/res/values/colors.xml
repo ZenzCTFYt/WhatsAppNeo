@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="nb_bg">#F5F0E6</color>
-    <color name="nb_black">#000000</color>
-    <color name="nb_red">#FF5C5C</color>
-    <color name="nb_yellow">#FFD93D</color>
-    <color name="nb_blue">#4D96FF</color>
-    <color name="nb_green">#6BFF6B</color>
-    <color name="splash_bg">#F5F0E6</color>
+    <color name="nb_bg">#F2F2F7</color>
+    <color name="nb_black">#1C1C1E</color>
+    <color name="nb_red">#FF3B30</color>
+    <color name="nb_yellow">#FFD60A</color>
+    <color name="nb_blue">#007AFF</color>
+    <color name="nb_green">#34C759</color>
+    <color name="splash_bg">#F2F2F7</color>
 </resources>

@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         webView = findViewById(R.id.webView)
         splash = findViewById(R.id.splash)
-        webView.setBackgroundColor(android.graphics.Color.parseColor("#F5F0E6"))
+        webView.setBackgroundColor(android.graphics.Color.parseColor("#F2F2F7"))
 
         setupWebView()
 
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun injectTheme(view: WebView?) {
-        val css = assets.open("neo-brutalism.css").bufferedReader().use { it.readText() }
+        val css = assets.open("liquid-glass.css").bufferedReader().use { it.readText() }
         val escaped = css
             .replace("\\", "\\\\")
             .replace("'", "\\'")
