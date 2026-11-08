@@ -25,10 +25,12 @@ class MainActivity : AppCompatActivity() {
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
 
     private val filePicker = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val uris = result.data?.data?.let { arrayOf(it) }
-            ?: result.data?.clipData?.let { cd ->
-                (0 until cd.itemCount).map { cd.getItemAt(it).uri }.toTypedArray()
-            }
+        val uris: Array<Uri>? = if (result.resultCode == RESULT_OK) {
+            result.data?.data?.let { arrayOf(it) }
+                ?: result.data?.clipData?.let { cd ->
+                    (0 until cd.itemCount).map { cd.getItemAt(it).uri }.toTypedArray()
+                }
+        } else null
         filePathCallback?.onReceiveValue(uris)
         filePathCallback = null
     }
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         s.domStorageEnabled = true
         s.databaseEnabled = true
         s.cacheMode = WebSettings.LOAD_DEFAULT
-        s.allowFileAccess = false
+        s.allowFileAccess = true
         s.allowContentAccess = true
         s.mediaPlaybackRequiresUserGesture = false
         s.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
@@ -113,6 +115,10 @@ class MainActivity : AppCompatActivity() {
                 val intent = fileChooserParams?.createIntent() ?: Intent(Intent.ACTION_GET_CONTENT).apply {
                     addCategory(Intent.CATEGORY_OPENABLE)
                     type = "*/*"
+                }
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                if (fileChooserParams?.mode == WebChromeClient.FileChooserParams.MODE_OPEN_MULTIPLE) {
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
                 }
                 filePicker.launch(intent)
                 return true
