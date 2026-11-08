@@ -31,8 +31,13 @@ jobs:
           path: ~/.android/debug.keystore
           key: whatsapp-neo-debug-keystore-v1
 
+      - name: Check Gradle
+        run: |
+          which gradle || ls /usr/bin/gradle /usr/share/gradle/bin/gradle 2>/dev/null
+          gradle --version || true
+
       - name: Build debug APK
-        run: ./gradlew :app:assembleDebug --no-daemon
+        run: gradle :app:assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
