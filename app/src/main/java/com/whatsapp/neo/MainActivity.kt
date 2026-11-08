@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             .replace("\\", "\\\\")
             .replace("'", "\\'")
             .replace("\n", "\\n")
-        val js = \"\"\"
+        val js = """
             (function() {
               var id = 'neo-brutalism-theme';
               var old = document.getElementById(id);
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                 window.__nbObs.observe(document.documentElement, { childList: true, subtree: true });
               }
             })();
-        \"\"\".trimIndent()
+        """.trimIndent()
         view?.evaluateJavascript(js, null)
     }
 
