@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         s.setSupportZoom(true)
         s.builtInZoomControls = true
         s.displayZoomControls = false
-        s.setInitialScale(0)
+        webView.setInitialScale(0)
 
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
