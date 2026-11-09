@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         webView = findViewById(R.id.webView)
         splash = findViewById(R.id.splash)
-        webView.setBackgroundColor(android.graphics.Color.parseColor("#F2F2F7"))
+        webView.setBackgroundColor(android.graphics.Color.parseColor("#FFFFFF"))
 
         setupWebView()
 
@@ -74,12 +74,19 @@ class MainActivity : AppCompatActivity() {
         s.setSupportZoom(true)
         s.builtInZoomControls = true
         s.displayZoomControls = false
+        s.setRenderPriority(WebSettings.RenderPriority.HIGH)
+        s.setLoadsImagesAutomatically(true)
+        s.setBlockNetworkImage(false)
         webView.setInitialScale(0)
+        webView.setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
+        webView.overScrollMode = android.view.View.OVER_SCROLL_NEVER
+        webView.scrollBarStyle = android.view.View.SCROLLBARS_INSIDE_OVERLAY
+        webView.isVerticalScrollBarEnabled = false
+        webView.isHorizontalScrollBarEnabled = false
 
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                injectTheme(view)
                 splash.visibility = android.view.View.GONE
             }
 
@@ -121,30 +128,6 @@ class MainActivity : AppCompatActivity() {
                 request?.grant(request.resources)
             }
         }
-    }
-
-    private fun injectTheme(view: WebView?) {
-        val css = assets.open("liquid-glass.css").bufferedReader().use { it.readText() }
-        val escaped = css
-            .replace("\\", "\\\\")
-            .replace("'", "\\'")
-            .replace("\n", "\\n")
-        val js = """
-            (function() {
-              var id = 'neo-brutalism-theme';
-              var old = document.getElementById(id);
-              if (old) old.remove();
-              var st = document.createElement('style');
-              st.id = id;
-              st.textContent = '$escaped';
-              (document.head || document.documentElement).appendChild(st);
-              // Responsive viewport
-              var meta = document.querySelector('meta[name="viewport"]');
-              if (!meta) { meta = document.createElement('meta'); meta.name = 'viewport'; (document.head || document.documentElement).appendChild(meta); }
-              meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
-            })();
-        """.trimIndent()
-        view?.evaluateJavascript(js, null)
     }
 
     private fun requestRuntimePermissions() {
