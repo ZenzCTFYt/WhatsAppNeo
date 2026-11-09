@@ -47,6 +47,12 @@ class MainActivity : AppCompatActivity() {
 
         setupWebView()
 
+        findViewById<android.widget.Button>(R.id.btnZoomOut).setOnClickListener { webView.zoomBy(0.8f) }
+        findViewById<android.widget.Button>(R.id.btnZoomIn).setOnClickListener { webView.zoomBy(1.25f) }
+        findViewById<android.widget.Button>(R.id.btnZoomFit).setOnClickListener {
+            webView.setInitialScale(0)
+            webView.reload()
+        }
 
         requestRuntimePermissions()
 
