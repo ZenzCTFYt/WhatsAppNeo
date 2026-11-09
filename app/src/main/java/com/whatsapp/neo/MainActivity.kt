@@ -50,11 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         requestRuntimePermissions()
 
-        if (savedInstanceState != null) {
-            webView.restoreState(savedInstanceState)
-        } else {
-            webView.loadUrl("https://web.whatsapp.com")
-        }
+        webView.loadUrl("https://web.whatsapp.com")
     }
 
     override fun onSaveInstanceState(outState: android.os.Bundle) {
@@ -67,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         s.javaScriptEnabled = true
         s.domStorageEnabled = true
         s.databaseEnabled = true
-        s.cacheMode = WebSettings.LOAD_DEFAULT
+        s.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         s.allowFileAccess = true
         s.allowContentAccess = true
         s.mediaPlaybackRequiresUserGesture = false
@@ -90,9 +86,6 @@ class MainActivity : AppCompatActivity() {
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: android.webkit.WebResourceError?) {
                 super.onReceivedError(view, request, error)
                 splash.visibility = android.view.View.GONE
-                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                    view?.reload()
-                }, 2000)
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
